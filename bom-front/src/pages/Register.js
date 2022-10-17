@@ -1,4 +1,4 @@
-import './Register.css';
+import './StandarStyled.css';
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import * as yup from "yup";
 import Axios from 'axios'
@@ -26,7 +26,7 @@ const OnHandleClickRegister = (values) => {
 
 const validationRegister = yup.object().shape({
   nome: yup.string().required("Campo obrigatório"),
-  descricao: yup.string().min(20, "Mínimo de 50 caracteres").required("Campo obrigatório")
+  descricao: yup.string().min(20, "Mínimo de 20 caracteres").required("Campo obrigatório")
  
 
 });

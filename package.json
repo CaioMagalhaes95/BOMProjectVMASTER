@@ -11,8 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.1.2",
+    "connect-flash": "^0.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
+    "express-session": "^1.17.3",
+    "flash": "^1.1.0",
     "formik": "^2.2.9",
     "fs": "^0.0.1-security",
     "fs-extra": "^10.1.0",

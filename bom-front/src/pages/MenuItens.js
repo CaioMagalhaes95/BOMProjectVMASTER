@@ -10,8 +10,8 @@ export const MenuItens = [
         cName: 'dropdown-link'
     },
     {
-        title: 'Armazem',
-        path: '/armazem',
+        title: 'Storage',
+        path: '/storage',
         cName: 'dropdown-link'
     }
 ]

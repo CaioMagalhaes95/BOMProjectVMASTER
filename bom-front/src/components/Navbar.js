@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Button } from './Button';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import './Navbar.css';
 import Dropdown from './Dropdown';
+import Search from '../pages/Search';
+
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -38,11 +40,11 @@ function Navbar() {
           <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-          <li className='nav-item'>
-            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-              Home
+          {/* <li className='nav-item'>
+            <Link to='/Material' className='nav-links' onClick={closeMobileMenu}>
+              Material
             </Link>
-          </li>
+          </li> */}
           <li
             className='nav-item'
             onMouseEnter={onMouseEnter}
@@ -57,7 +59,15 @@ function Navbar() {
             </Link>
             {dropdown && <Dropdown />}
           </li>
-         
+
+         <li className='nav-item'>
+          <Link to='/search' className='nav-links' onClick={closeMobileMenu}>
+            Search <i className='fas fa-search' />
+            
+          </Link>
+          
+          
+         </li>
           
           <li>
             <Link
@@ -70,6 +80,7 @@ function Navbar() {
           </li>
         </ul>
         <Button />
+        
       </nav>
     </>
   );
