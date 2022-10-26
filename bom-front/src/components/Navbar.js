@@ -4,6 +4,7 @@ import { Link, Route } from 'react-router-dom';
 import './Navbar.css';
 import Dropdown from './Dropdown';
 import Search from '../pages/Search';
+import DropdownSearch from './DropDownSearch';
 
 
 function Navbar() {
@@ -60,12 +61,15 @@ function Navbar() {
             {dropdown && <Dropdown />}
           </li>
 
-         <li className='nav-item'>
+         <li className='nav-item'
+         onMouseEnter={onMouseEnter}
+         onMouseLeave={onMouseLeave}
+         >
           <Link to='/search' className='nav-links' onClick={closeMobileMenu}>
             Search <i className='fas fa-search' />
             
           </Link>
-          
+          {dropdown && <DropdownSearch />}
           
          </li>
           

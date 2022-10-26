@@ -32,19 +32,15 @@ router.post('/material', (req, res) => {
 })
 
 
-router.get('/material/:nome', (req, res) => {
-    const nomeSearch = req.params.nome
+router.get('/material', (req, res) => {
 
-    if (!nomeSearch) {
-        return res.status(404).json({ msg: 'Usuario não encontrado' })
-    }
-    sequelize.query(`SELECT * FROM Materiais where nome = ?`, nomeSearch, {
+    sequelize.query(`Select * from Materiais where nome like ?`,  {
+        type: QueryTypes.Select,
+        replacements: ['%' + req.query.search + '%']
+    }).then(mat => {
+        res.json(mat[0]);
+    })
 
-        type: QueryTypes.SELECT,
-        replacements: nomeSearch
-
-    }).then(() => res.end())
-        .catch(err => res.end(err))
 })
 
 
@@ -80,6 +76,17 @@ router.post('/storage', (req, res) => {
     })
         .then(() => res.end('done'))
         .catch(err => res.end(err));
+})
+
+router.get('/storage', (req, res) => {
+
+    sequelize.query(`Select * from Armazem where prateleira like ?`,  {
+        type: QueryTypes.Select,
+        replacements: ['%' + req.query.search + '%']
+    }).then(arm => {
+        res.json(arm[0]);
+    })
+
 })
 
 module.exports = router;
