@@ -16,6 +16,21 @@ export default function StorageSearch(){
 
     }
 
+    const deleteItem = (shelf) => {
+        const shelfs = data["shelfs"];
+        const requestOptions = {
+            method: "DELETE"
+        }
+        fetch(`http://localhost:3000/storage/${shelfs.IDArmazem}`, requestOptions)
+        .then((response) =>{
+            if(response.ok){
+                const idx = shelfs.indexOf(shelf);
+                shelfs.splice(idx, 1);
+                setData({shelfs: shelfs})
+            }
+        })
+    }
+
     useEffect(()=>{
       getFunction();
     },[]
@@ -35,6 +50,7 @@ export default function StorageSearch(){
           <th>#</th>
           <th>Shelf</th>
           <th>Type of Material</th>
+          <th>Delete</th>
           
         </tr>
       </thead>
@@ -53,6 +69,7 @@ export default function StorageSearch(){
                   <td>
                     {arm.tipodeproduto}
                   </td>
+                  <td><button className="btn btn-danger" onClick={() => {deleteItem(arm)}}>Delete</button></td>
                 </tr>
               )
           })

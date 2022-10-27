@@ -89,4 +89,16 @@ router.get('/storage', (req, res) => {
 
 })
 
+
+router.delete('/storage', (req, res) => {
+    const shelf = req.body
+    sequelize.query(`Delete * from Armazem where prateleira like ?`,  {
+        type: QueryTypes.DELETE,
+        replacements: [shelf]
+    }).then(arm => {
+        res.json(arm[0]);
+    })
+
+})
+
 module.exports = router;
