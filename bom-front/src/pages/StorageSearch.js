@@ -2,6 +2,7 @@ import './StandarStyled.css'
 import Table from 'react-bootstrap/Table'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 export default function StorageSearch(){
@@ -16,25 +17,19 @@ export default function StorageSearch(){
 
     }
 
-    const deleteItem = (shelf) => {
-        const shelfs = data["shelfs"];
-        const requestOptions = {
-            method: "DELETE"
-        }
-        fetch(`http://localhost:3000/storage/${shelfs.IDArmazem}`, requestOptions)
-        .then((response) =>{
-            if(response.ok){
-                const idx = shelfs.indexOf(shelf);
-                shelfs.splice(idx, 1);
-                setData({shelfs: shelfs})
-            }
-        })
-    }
-
     useEffect(()=>{
       getFunction();
     },[]
     )
+
+    function deleteFunction(id){
+      axios.delete(`http://localhost:3000/storage/${id}`)
+      .then(()=>{
+        getFunction();
+      })
+    }
+
+    
 
 
   return(
@@ -69,7 +64,8 @@ export default function StorageSearch(){
                   <td>
                     {arm.tipodeproduto}
                   </td>
-                  <td><button className="btn btn-danger" onClick={() => {deleteItem(arm)}}>Delete</button></td>
+                  <td><button className="btn btn-danger" onClick={() => deleteFunction(arm.IDArmazem)}>Delete</button></td>
+                  <td><Link to={"/storageUpdate/" + arm.IDArmazem}>Update</Link></td>
                 </tr>
               )
           })

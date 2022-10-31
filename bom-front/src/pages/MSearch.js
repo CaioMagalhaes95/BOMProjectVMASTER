@@ -2,6 +2,7 @@ import './StandarStyled.css'
 import Table from 'react-bootstrap/Table'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 export default function MaterialSearch(){
@@ -21,6 +22,12 @@ export default function MaterialSearch(){
     },[]
     )
 
+    function deleteFunction(id){
+      axios.delete(`http://localhost:3000/Material/${id}`)
+      .then(()=>{
+        getFunction();
+      })
+    }
 
   return(
     
@@ -81,6 +88,8 @@ export default function MaterialSearch(){
                   <td>
                     {mat.composicao}
                   </td>
+                  <td><button className="btn btn-danger" onClick={() => deleteFunction(mat.IDMaterial)}>Delete</button></td>
+                  <td><Link to={"/MatUpdate/" + mat.IDMaterial}>Update</Link></td>
                 </tr>
               )
           })

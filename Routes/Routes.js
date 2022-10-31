@@ -43,6 +43,30 @@ router.get('/material', (req, res) => {
 
 })
 
+router.delete('/Material/:id', (req, res)=> {
+    
+    sequelize.query(`DELETE from Materiais where IDMaterial like ?`,  {
+        type: QueryTypes.DELETE,
+        replacements: [req.params.id]
+    }).then(mat => {
+        res.json(mat);
+    })
+})
+
+router.put('/Material/:id', (req, res) => {
+
+    console.log(req.body)
+    const { nome, descricao, datac, quantidade, sistema, massa, custo, unidadedemedida, composicao } = req.body
+    
+    sequelize.query(`update Materiais set nome = ?, descricao = ?, datac = ?, quantidade = ?, sistema = ?, massa = ?, custo = ?, unidadedemedida = ?, composicao = ? where IDMaterial = ?`,  {
+        type: QueryTypes.UPDATE,
+        replacements: [nome, descricao, datac, quantidade, sistema, massa, custo, unidadedemedida, composicao, req.params.id]
+    }).then(mat => {
+        res.json(mat);
+    })
+
+})
+
 
 router.post('/cars', (req, res) => {
     const { nome, descricao } = req.body
@@ -64,6 +88,31 @@ router.get('/cars', (req, res)=> {
     }).then(cars => {
         res.json(cars[0]);
     })
+})
+
+
+router.delete('/cars/:id', (req, res)=> {
+    
+    sequelize.query(`DELETE from Carros where IDCarro like ?`,  {
+        type: QueryTypes.DELETE,
+        replacements: [req.params.id]
+    }).then(cars => {
+        res.json(cars);
+    })
+})
+
+router.put('/cars/:id', (req, res) => {
+
+    console.log(req.body)
+    const { nome, descricao } = req.body
+    
+    sequelize.query(`update Carros set nomeCarro = ?, descricaoCarro = ? where IDCarro = ?`,  {
+        type: QueryTypes.UPDATE,
+        replacements: [nome, descricao, req.params.id]
+    }).then(arm => {
+        res.json(arm);
+    })
+
 })
 
 router.post('/storage', (req, res) => {
@@ -90,13 +139,27 @@ router.get('/storage', (req, res) => {
 })
 
 
-router.delete('/storage', (req, res) => {
-    const shelf = req.body
-    sequelize.query(`Delete * from Armazem where prateleira like ?`,  {
+router.delete('/storage/:id', (req, res) => {
+ 
+    sequelize.query(`Delete from Armazem where IDArmazem = ?`,  {
         type: QueryTypes.DELETE,
-        replacements: [shelf]
+        replacements: [req.params.id]
     }).then(arm => {
-        res.json(arm[0]);
+        res.json(arm);
+    })
+
+})
+
+router.put('/storage/:id', (req, res) => {
+
+    console.log(req.body)
+    const { shelf, tom } = req.body
+    
+    sequelize.query(`update Armazem set Prateleira = ?, tipodeproduto = ? where IDArmazem = ?`,  {
+        type: QueryTypes.UPDATE,
+        replacements: [shelf, tom, req.params.id]
+    }).then(arm => {
+        res.json(arm);
     })
 
 })

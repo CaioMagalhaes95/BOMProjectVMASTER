@@ -2,6 +2,7 @@ import './StandarStyled.css'
 import Table from 'react-bootstrap/Table'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 export default function Search(){
@@ -20,6 +21,15 @@ export default function Search(){
       getFunction();
     },[]
     )
+
+    
+    function deleteFunction(id){
+      axios.delete(`http://localhost:3000/cars/${id}`)
+      .then(()=>{
+        getFunction();
+      })
+    }
+
 
 
   return(
@@ -53,6 +63,8 @@ export default function Search(){
                   <td>
                     {car.descricaoCarro}
                   </td>
+                  <td><button className="btn btn-danger" onClick={() => deleteFunction(car.IDCarro)}>Delete</button></td>
+                  <td><Link to={"/CarUpdate/" + car.IDCarro}>Update</Link></td>
                 </tr>
               )
           })
