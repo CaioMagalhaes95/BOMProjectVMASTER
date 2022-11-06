@@ -16,6 +16,7 @@ export default function StorageUpdate() {
         shelf: values.shelf,
         tom: values.tom       
       })
+      alert("Successfully updated")
     }
     
     const validationRegister = yup.object().shape({

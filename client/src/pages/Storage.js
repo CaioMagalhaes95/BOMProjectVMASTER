@@ -16,6 +16,7 @@ const OnHandleClickRegister = (values) => {
     tom: values.tom
     
   })
+  alert("Successfully registered")
 }
 
 const validationRegister = yup.object().shape({

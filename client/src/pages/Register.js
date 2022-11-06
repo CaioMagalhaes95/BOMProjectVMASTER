@@ -22,6 +22,7 @@ export default function Register() {
       unidadedemedida: values.unidadedemedida,
       composicao: values.composicao
     })
+    alert("Successfully registered")
   }
 
   const validationRegister = yup.object().shape({

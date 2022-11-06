@@ -77,7 +77,7 @@ router.post('/cars', (req, res) => {
         replacements: [nome, descricao],
     })
         .then(() => res.end('done'))
-        .catch(err => res.end(err));
+        .catch(err => res.end(err.message));
 })
 
 router.get('/cars', (req, res)=> {

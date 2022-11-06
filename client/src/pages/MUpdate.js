@@ -23,6 +23,7 @@ export default function MatUpdate() {
         unidadedemedida: values.unidadedemedida,
         composicao: values.composicao      
       })
+      alert("Successfully updated")
     }
     
     const validationRegister = yup.object().shape({

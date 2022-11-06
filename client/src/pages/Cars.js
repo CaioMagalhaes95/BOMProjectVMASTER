@@ -14,6 +14,7 @@ export default function Car() {
         nome: values.nome,
         descricao: values.descricao        
       })
+      alert("Successfully registered")
     }
     
     const validationRegister = yup.object().shape({

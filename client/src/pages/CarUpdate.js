@@ -16,6 +16,7 @@ export default function CarUpdate() {
         nome: values.nome,
         descricao: values.descricao       
       })
+      alert("Successfully Updated")
     }
     
     const validationRegister = yup.object().shape({
